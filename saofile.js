@@ -117,6 +117,17 @@ module.exports = {
         type: 'modify',
         files: 'package.json',
         handler: data => require('./lib/update-pkg')(this.answers, data)
+      },
+      {
+        type: 'modify',
+        files: '.babelrc.json',
+        handler: data => {
+          if (this.answers.language === 'ts') {
+            data.presets.push("@babel/preset-typescript")
+          }
+          return data
+        },
+        when: 'compile'
       }
     ]
   },

@@ -3,15 +3,17 @@ import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import pkg from './package.json';
 
+<% const useTS = language === 'ts' -%>
+
 export default [
 	// browser-friendly UMD build
 	{
-		input: 'src/index.ts',
+		input: 'src/index.<%= useTS ? "ts" : "js" %>',
 		output: {
-			name: 'howLongUntilLunch',
-			file: pkg.browser,
-			format: 'umd'
-		},
+      name: '<%= name %>',
+      file: pkg.browser,
+      format: 'umd'
+    },
 		plugins: [
 			resolve({
 				extensions: ['.mjs', '.js', '.json', '.node', '.ts', '.tsx']
@@ -31,7 +33,7 @@ export default [
 	// an array for the `output` option, where we can specify
 	// `file` and `format` for each target)
 	{
-		input: 'src/index.ts',
+		input: 'src/index.<%= useTS ? "ts" : "js" %>',
 		external: [
       ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.peerDependencies || {})
