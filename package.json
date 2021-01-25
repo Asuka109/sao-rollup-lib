@@ -1,12 +1,13 @@
 {
   "name": "sao-rollup-lib",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Scaffolding out a rollup lib.",
   "repository": {
     "url": "asuka109/sao-rollup-lib",
     "type": "git"
   },
   "author": "asuka109 <1097198892@qq.com> (github.com/asuka109)",
+  "homepage": "https://github.com/asuka109/sao-rollup-lib#readme",
   "license": "MIT",
   "bin": "./bin/cli.js",
   "files": [
@@ -27,7 +28,7 @@
   },
   "ava": {
     "files": [
-			"test/**/*"
-		]
+      "test/**/*"
+    ]
   }
 }
