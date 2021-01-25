@@ -46,7 +46,7 @@ module.exports = {
         name: 'compile',
         message: 'Do you need to compile code with babel',
         type: 'confirm',
-        default: false
+        default: true
       },
       {
         name: 'language',
@@ -88,6 +88,12 @@ module.exports = {
         default: 'xo',
         choices: ['xo', 'standard', 'disabled']
       },
+      {
+        name: 'install',
+        message: `Do you want to install packages right now`,
+        type: 'confirm',
+        default: true
+      }
     ]
   },
   actions() {
@@ -99,7 +105,8 @@ module.exports = {
           'test/**': 'unitTest',
           'src-javascript/**': 'language === "js"',
           'src-typescript/**': 'language === "ts"',
-          'index.js': '!compile'
+          'index.js': '!compile',
+          'tsconfig.json': 'language === "ts"'
         }
       },
       {
@@ -133,7 +140,8 @@ module.exports = {
   },
   async completed() {
     await this.gitInit()
-    await this.npmInstall({ packageManager: this.answers.pm })
+    if (this.answers.install)
+      await this.npmInstall({ packageManager: this.answers.pm })
     this.showProjectTips()
   }
 }

@@ -8,12 +8,14 @@
   },
   "author": "asuka109 <1097198892@qq.com> (github.com/asuka109)",
   "license": "MIT",
+  "bin": "./bin/cli.js",
   "files": [
     "saofile.js",
     "template"
   ],
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "testcli": "node bin/cli.js temp_project"
   },
   "dependencies": {
     "camelcase": "^6.2.0",
